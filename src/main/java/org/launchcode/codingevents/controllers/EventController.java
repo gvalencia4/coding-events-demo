@@ -36,4 +36,15 @@ public class EventController {
         return "redirect:";
     }
 
+    @GetMapping("delete")
+    public String displayDeleteEventForm(Model model) {
+        model.addAttribute("title", "Delete Event");
+        return "events/delete";
+    }
+    @PostMapping("delete")
+    public String processDeleteEventForm(@RequestParam int eventID) {
+        EventData.remove(eventID);
+        return "redirect:";
+    }
+
 }

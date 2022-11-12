@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <title></title>
+</head>
+<body>
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post">
+    <label>Event ID
+        <input type="text" name="eventID">
+    </label>
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>
