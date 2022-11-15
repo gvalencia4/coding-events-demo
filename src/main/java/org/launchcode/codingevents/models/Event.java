@@ -1,9 +1,9 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.*;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -34,12 +34,21 @@ public class Event {
     @NotNull(message = "registrationRequired must not be null")
     private boolean registrationRequired;
 
+    @Positive(message="Event size must be larger than 0")
+    private int attendees;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Select a start date")
+    private Date startDate;
+
     public Event(String name,
                  String description,
                  String contactEmail,
                  EventType event,
                  String location,
-                 boolean registrationRequired) {
+                 boolean registrationRequired,
+                 int attendees,
+                 Date startDate) {
 
         this();
         this.name = name;
@@ -48,6 +57,8 @@ public class Event {
         this.contactEmail = contactEmail;
         this.registrationRequired = registrationRequired;
         this.type = type;
+        this.attendees = attendees;
+        this.startDate = startDate;
     }
 
     public Event() {
@@ -101,6 +112,22 @@ public class Event {
 
     public void setRegistrationRequired(boolean registrationRequired) {
         this.registrationRequired = registrationRequired;
+    }
+
+    public int getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(int attendees) {
+        this.attendees = attendees;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public int getId() {
